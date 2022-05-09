@@ -1,12 +1,12 @@
 package com.example.projeto4prep
 
 import android.app.Application
-import com.example.projeto4prep.data.TaskDatabase
+import com.example.projeto4prep.data.TodoDatabase
 
-class TodoApplication: Application() {
+class TodoApplication : Application() {
 
-    val database: TaskDatabase by lazy {
-        TaskDatabase.getDatabase(this)
+    val database: TodoDatabase by lazy {
+        TodoDatabase.getInstance(this)
     }
 
 }
