@@ -10,8 +10,11 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
 
     val allTasks: LiveData<List<Task>> = taskDao.getAllTasks().asLiveData()
 
-    fun getTask(id: Int): LiveData<Task>{
-        return taskDao.getTask(id).asLiveData()
+    fun getTask(id: Int): Task{
+        val taskList = (allTasks.value ?: listOf())
+        return  taskList.find {
+            id == it.id
+        } ?: Task(-1, "" , isImportant = false, isCompleted = false)
     }
 
     private fun insert(task: Task){
